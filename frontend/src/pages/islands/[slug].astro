@@ -1,0 +1,38 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import IslandTemplate from '../../templates/IslandTemplate.astro';
+import { fetchDestinationBySlug } from '../../services/api';
+import type { Destination } from '../../types';
+
+// Get the slug from the URL params
+export const prerender = false;
+const { slug } = Astro.params;
+
+// Fetch data for this island
+let island: Destination | null = null;
+let error: string | null = null;
+
+try {
+  if (slug) {
+    island = await fetchDestinationBySlug(slug);
+  } else {
+    error = "Island slug is missing";
+  }
+} catch (err) {
+  console.error("Error fetching island data:", err);
+  error = "Failed to load island data";
+}
+
+// Handle 404 if island not found or there's an error
+if (!island || error) {
+  return Astro.redirect('/404');
+}
+
+// Meta data for the page
+const title = `${island.attributes.name} Island Guide - Hawaii Tourism`;
+const description = `Explore ${island.attributes.name}: ${island.attributes.shortDescription || island.attributes.description.substring(0, 160)}`;
+---
+
+<MainLayout title={title} description={description}>
+  <IslandTemplate island={island} />
+</MainLayout>

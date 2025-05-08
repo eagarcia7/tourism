@@ -1,0 +1,23 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* site-wide Tailwind customizations: */
+:root {
+  --color-primary: theme('colors.blue.800');
+  --color-text-light: theme('colors.gray.100');
+  --spacing-xl: theme('spacing.12');
+}
+
+body {
+    @apply bg-background text-gray-800 font-body;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-heading text-primary;
+  }
+  
+  /* a {
+    @apply text-accent hover:underline transition-all duration-300;
+  } */

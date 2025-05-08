@@ -1,0 +1,136 @@
+---
+import Header from '../components/layout/Header';
+import Footer from '../components/layout/Footer';
+import type { NavigationItem, FooterNavSection, SocialMediaLink } from '../types/index';
+import '../styles/global.css';
+import '../styles/layout.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  headerTransparent?: boolean;
+}
+
+const { 
+  title,
+  description = "Discover the beauty of Hawaii with our travel guide.", 
+  image = "/images/hawaii-default-og.jpg",
+  headerTransparent = false
+} = Astro.props;
+
+// Navigation items for the header
+const navigationItems: NavigationItem[] = [
+  { label: 'Islands', url: '/islands' },
+  { label: 'Activities', url: '/activities' },
+  { label: 'Events', url: '/events' },
+  { label: 'Travel Guide', url: '/guide' },
+  { label: 'Blog', url: '/blog' },
+];
+
+// Footer navigation sections
+const footerNavSections: FooterNavSection[] = [
+  {
+    title: 'Explore',
+    links: [
+      { label: 'Islands', url: '/islands' },
+      { label: 'Activities', url: '/activities' },
+      { label: 'Events', url: '/events' },
+      { label: 'Travel Guide', url: '/guide' },
+    ]
+  },
+  {
+    title: 'About',
+    links: [
+      { label: 'About Us', url: '/about' },
+      { label: 'Contact', url: '/contact' },
+      { label: 'FAQ', url: '/faq' },
+      { label: 'Privacy Policy', url: '/privacy' },
+    ]
+  }
+];
+
+// Social media links for the footer
+const socialLinks: SocialMediaLink[] = [
+  { platform: 'Facebook', url: 'https://facebook.com', icon: 'fab fa-facebook' },
+  { platform: 'Twitter', url: 'https://twitter.com', icon: 'fab fa-twitter' },
+  { platform: 'Instagram', url: 'https://instagram.com', icon: 'fab fa-instagram' },
+];
+
+const techStack = [
+  'React Components', 
+  'Astro', 
+  'Strapi CMS', 
+  'GraphQL API', 
+  'TypeScript', 
+  'Tailwind CSS'
+];
+
+const isLandingPage = Astro.url.pathname === "/";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={image}>
+  <meta property="og:type" content="website">
+  <meta property="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>{title}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <!-- Styles -->
+  <!-- <link rel="stylesheet" href="../styles/global.css" /> -->
+</head>
+<body class="site-wrapper">
+  <!-- Use React Header component with client:load directive to ensure it's interactive immediately -->
+  <Header 
+    title="" 
+    subtitle="Discover paradise with our interactive travel guide" 
+    badge="Strapi CMS + Astro Demo"
+    navigationItems={navigationItems}
+    isTransparent={headerTransparent}
+    client:load
+  />
+
+  <!-- Main content area -->
+  <main class={!isLandingPage ? "main-content pt-20" : "main-content"}>
+    <slot />
+  </main>
+
+  <!-- Use React Footer component -->
+  <Footer 
+    title="Explore Hawaii"
+    subtitle="Demo for Travel & Tourism CMS Integration Project"
+    techStack={techStack}
+    navSections={footerNavSections}
+    socialLinks={socialLinks}
+    year={new Date().getFullYear()}
+    client:visible
+  />
+</body>
+</html>
+
+<script>
+  // Add scroll listener for transparent header
+  const header = document.querySelector('.header-transparent');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+</script>

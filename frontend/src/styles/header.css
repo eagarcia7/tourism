@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for header component */
+@layer components {
+  .nav-link {
+    @apply text-white hover:text-yellow-300 font-medium transition duration-200;
+  }
+
+  .nav-dropdown {
+    @apply hidden group-hover:block absolute top-full left-0 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50;
+  }
+
+  .nav-dropdown a {
+    @apply block px-6 py-3 text-gray-700 hover:bg-gray-50;
+  }
+
+  .mobile-toggle-button {
+    @apply lg:hidden p-2 rounded-lg hover:bg-white/10 transition;
+  }
+
+  .mobile-nav-container {
+    @apply lg:hidden bg-white border-t;
+  }
+
+  .mobile-nav-inner {
+    @apply container mx-auto px-4 py-4 space-y-4;
+  }
+
+  .mobile-nav-link {
+    @apply block text-gray-700 text-lg font-medium hover:text-primary transition;
+  }
+
+  .header-logo {
+    @apply h-12;
+  }
+
+  .header-title {
+    @apply text-3xl font-bold;
+  }
+
+  .header-container {
+    @apply container mx-auto px-4 flex items-center justify-between h-20;
+  }
+
+  .desktop-nav {
+    @apply hidden lg:flex items-center space-x-8;
+  }
+}
