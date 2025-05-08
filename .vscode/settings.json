@@ -1,0 +1,9 @@
+{
+    "tailwindCSS.includeLanguages": {
+      "plaintext": "html",
+      "astro": "html"
+    },
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  }
