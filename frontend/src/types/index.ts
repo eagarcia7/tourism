@@ -185,6 +185,7 @@ export interface ContentAttributes {
       activities: string[];
       weatherInfo?: string;
       travelTips?: string;
+      imageUrl?: string;
     };
   }
   
@@ -202,6 +203,7 @@ export interface ContentAttributes {
       image?: MediaItem;
       category?: string;
       url?: string;
+      imageUrl?: string;
     };
   }
   

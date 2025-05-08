@@ -50,6 +50,7 @@ export interface Destination {
     activities: string[];
     weatherInfo?: string;
     travelTips?: string;
+    imageUrl?: string;
   };
 }
 

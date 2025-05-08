@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "destinations",
+  "info": {
+    "singularName": "destination",
+    "pluralName": "destinations",
+    "displayName": "Destinations",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "unique": true
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "weatherInfo": {
+      "type": "blocks"
+    },
+    "travelTips": {
+      "type": "blocks"
+    },
+    "imageUrl": {
+      "type": "string"
+    }
+  }
+}

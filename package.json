@@ -1,0 +1,16 @@
+{
+    "name": "tourism-project",
+    "private": true,
+    "workspaces": [
+      "frontend",
+      "backend"
+    ],
+    "scripts": {
+      "frontend": "npm run dev -w frontend",
+      "backend": "npm run develop -w backend",
+      "start": "concurrently \"npm run backend\" \"npm run frontend\""
+    },
+    "devDependencies": {
+      "concurrently": "^8.2.0"
+    }
+  }

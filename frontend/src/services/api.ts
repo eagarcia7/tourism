@@ -13,7 +13,7 @@ import type {
 } from '../types';
 
 // Flag to force using mock data (set to true during development)
-const USE_MOCK_DATA = import.meta.env.USE_MOCK_DATA;
+const USE_MOCK_DATA: boolean = import.meta.env.USE_MOCK_DATA === 'true';
 
 /**
  * GraphQL client configuration
@@ -22,7 +22,8 @@ const client = new ApolloClient({
   uri: import.meta.env.STRAPI_GRAPHQL_URL || 'http://localhost:1337/graphql',
   cache: new InMemoryCache(),
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${import.meta.env.STRAPI_API_TOKEN}`
   }
 });
 
@@ -50,6 +51,7 @@ const DESTINATION_FRAGMENT = gql`
       activities
       createdAt
       publishedAt
+      imageUrl
     }
   }
 `;

@@ -191,7 +191,7 @@ const description = "Plan your perfect Hawaiian vacation with our comprehensive 
               {event.attributes.image?.data && (
                 <div class="md:w-1/3">
                   <img 
-                    src={event.attributes.image.data.attributes.url} 
+                    src={event.attributes.imageUrl} 
                     alt={event.attributes.image.data.attributes.alternativeText || event.attributes.title} 
                     class="w-full h-48 md:h-full object-cover"
                   />

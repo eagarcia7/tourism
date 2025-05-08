@@ -6,7 +6,7 @@ interface Props {
 }
 
 const DestinationCard: React.FC<Props> = ({ destination }) => {
-  const { name, slug, shortDescription, image } = destination.attributes;
+  const { name, slug, shortDescription, image, imageUrl } = destination.attributes;
   
   return (
     <a 
@@ -16,7 +16,7 @@ const DestinationCard: React.FC<Props> = ({ destination }) => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={image?.data?.attributes.url}
+          src={imageUrl}
           alt={image?.data?.attributes.alternativeText || name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
