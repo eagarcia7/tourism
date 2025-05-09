@@ -1,10 +1,9 @@
 // File to create/modify: ./config/plugins.js
-
-module.exports = {
+module.exports = ({ env }) => ({
     graphql: {
       enabled: true,
       config: {
-        playgroundAlways: true,
+        landingPage: true, // Replaces deprecated playgroundAlways
         defaultLimit: 10,
         maxLimit: 100,
         apolloServer: {
@@ -12,4 +11,9 @@ module.exports = {
         },
       },
     },
-  };
+    'users-permissions': {
+      config: {
+        jwtSecret: env('JWT_SECRET'),
+      },
+    },
+  });
