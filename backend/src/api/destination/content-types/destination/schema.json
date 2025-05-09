@@ -43,6 +43,9 @@
     },
     "imageUrl": {
       "type": "string"
+    },
+    "activities": {
+      "type": "json"
     }
   }
 }
