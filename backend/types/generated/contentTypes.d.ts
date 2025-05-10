@@ -389,7 +389,7 @@ export interface ApiDestinationDestination extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
+    description: Schema.Attribute.Text;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     imageUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -402,11 +402,11 @@ export interface ApiDestinationDestination extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     shortDescription: Schema.Attribute.Text;
     slug: Schema.Attribute.String & Schema.Attribute.Unique;
-    travelTips: Schema.Attribute.Blocks;
+    travelTips: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    weatherInfo: Schema.Attribute.Blocks;
+    weatherInfo: Schema.Attribute.Text;
   };
 }
 
