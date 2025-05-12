@@ -168,74 +168,70 @@ export interface ContentAttributes {
     } | null;
   }
   
-  /**
-   * Destination data structure from CMS
-   */
-  export interface Destination {
-    id: number;
-    attributes: ContentAttributes & {
-      name: string;
-      slug: string;
-      description: string;
-      shortDescription?: string;
-      image: MediaItem;
-      gallery?: {
-        data: Array<MediaItem['data']>;
-      };
-      activities: string[];
-      weatherInfo?: string;
-      travelTips?: string;
-      imageUrl?: string;
-    };
-  }
+  // /**
+  //  * Destination data structure from CMS
+  //  */
+  // export interface Destination {
+  //   id: number;
+  //   attributes: ContentAttributes & {
+  //     name: string;
+  //     slug: string;
+  //     description: string;
+  //     shortDescription?: string;
+  //     image: MediaItem;
+  //     weatherInfo?: string;
+  //     travelTips?: string;
+  //     imageUrl?: string;
+  //   };
+  // }
   
-  /**
-   * Event data structure from CMS
-   */
-  export interface Event {
-    id: number;
-    attributes: ContentAttributes & {
-      title: string;
-      slug: string;
-      description: string;
-      date: string;
-      location: string;
-      image?: MediaItem;
-      category?: string;
-      url?: string;
-      imageUrl?: string;
-    };
-  }
+  // /**
+  //  * Event data structure from CMS
+  //  */
+  // export interface Event {
+  //   id: number;
+  //   attributes: ContentAttributes & {
+  //     title: string;
+  //     slug: string;
+  //     description: string;
+  //     date: string;
+  //     location: string;
+  //     image?: MediaItem;
+  //     category?: string;
+  //     url?: string;
+  //     imageUrl?: string;
+  //   };
+  // }
   
   /**
    * Activity data structure from CMS
    */
-  export interface Activity {
-    id: number;
-    attributes: ContentAttributes & {
-      title: string;
-      slug: string;
-      description: string;
-      shortDescription?: string;
-      featuredImage: MediaItem;
-      gallery?: {
-        data: Array<MediaItem['data']>;
-      };
-      priceRange: string;
-      duration: string;
-      category: string;
-      location: {
-        address: string;
-        city: string;
-        zipCode: string;
-        coordinates: {
-          lat: number;
-          lng: number;
-        };
-      };
-      bookingInfo?: string;
-    };
-  }
+  // export interface Activity {
+  //   id: number;
+  //   attributes: ContentAttributes & {
+  //     title: string;
+  //     slug: string;
+  //     description: string;
+  //     shortDescription?: string;
+  //     featuredImage: MediaItem;
+  //     gallery?: {
+  //       data: Array<MediaItem['data']>;
+  //     };
+  //     priceRange: string;
+  //     duration: string;
+  //     category: string;
+  //     location: {
+  //       address: string;
+  //       city: string;
+  //       zipCode: string;
+  //       coordinates: {
+  //         lat: number;
+  //         lng: number;
+  //       };
+  //     };
+  //     bookingInfo?: string;
+  //   };
+  // }
   
   /**
    * Accommodation data structure from CMS

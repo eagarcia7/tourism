@@ -1,0 +1,195 @@
+import React from 'react';
+import type { IconName, IconSize } from '../../types/icon-types';
+
+interface IconProps {
+  /**
+   * Name of the icon to display
+   */
+  name: IconName;
+  
+  /**
+   * Size of the icon (width and height)
+   */
+  size?: IconSize;
+  
+  /**
+   * Additional CSS classes
+   */
+  className?: string;
+  
+  /**
+   * Optional onClick handler
+   */
+  onClick?: () => void;
+}
+
+/**
+ * SVG icon component with a consistent style
+ */
+const Icon: React.FC<IconProps> = ({
+  name,
+  size = 'md',
+  className = '',
+  onClick
+}) => {
+  // Map size names to class names
+  const sizeMap = {
+    sm: 'h-4 w-4',
+    md: 'h-6 w-6',
+    lg: 'h-8 w-8',
+    xl: 'h-10 w-10'
+  };
+
+  // Get the size class
+  const sizeClass = sizeMap[size];
+
+  // Function to get the path for each icon
+  const getIconPath = (iconName: IconName) => {
+    switch (iconName) {
+      case 'calendar':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" 
+          />
+        );
+      case 'home':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" 
+          />
+        );
+      case 'mail':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
+          />
+        );
+      case 'arrow-right':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M9 5l7 7-7 7" 
+          />
+        );
+      case 'arrow-left':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M15 19l-7-7 7-7" 
+          />
+        );
+      case 'arrow-up':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M5 15l7-7 7 7" 
+          />
+        );
+      case 'arrow-down':
+        return (
+          <path 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+            strokeWidth={2} 
+            d="M19 9l-7 7-7-7" 
+          />
+        );
+      case 'warning':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        );
+      case 'info':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        );
+      case 'star':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+          />
+        );
+      case 'check':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 13l4 4L19 7"
+          />
+        );
+      case 'clock':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        );
+      case 'map-pin':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          />
+        );
+      case 'dollar':
+        return (
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      className={`${sizeClass} ${className}`} 
+      fill="none" 
+      viewBox="0 0 24 24" 
+      stroke="currentColor"
+      aria-hidden="true"
+      onClick={onClick}
+    >
+      {getIconPath(name)}
+    </svg>
+  );
+};
+
+export default Icon;

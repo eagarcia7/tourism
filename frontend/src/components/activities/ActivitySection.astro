@@ -1,0 +1,22 @@
+
+---
+import ActivityGrid from './ActivityGrid';
+
+interface Props {
+  destinationName: string;
+  destinationId: string;
+}
+
+const { destinationName, destinationId } = Astro.props;
+---
+
+<section class="mt-8">
+  <h2 class="text-3xl font-bold text-gray-800 mb-6">Popular Activities in {destinationName}</h2>
+  <p class="text-gray-600 mb-8 max-w-3xl">
+    From adventure sports to cultural experiences, {destinationName} offers a wide range of activities for every traveler.
+    Explore our recommendations below to plan your perfect island itinerary.
+  </p>
+  
+  <!-- Activities Grid (React component) -->
+  <ActivityGrid destinationId={destinationId} client:visible />
+</section>

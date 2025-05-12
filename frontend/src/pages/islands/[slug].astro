@@ -29,8 +29,8 @@ if (!island || error) {
 }
 
 // Meta data for the page
-const title = `${island.attributes.name} Island Guide - Hawaii Tourism`;
-const description = `Explore ${island.attributes.name}: ${island.attributes.shortDescription || island.attributes.description.substring(0, 160)}`;
+const title = `${island.name} Island Guide - Hawaii Tourism`;
+const description = `Explore ${island.name}: ${island.shortDescription || island.description.substring(0, 160)}`;
 ---
 
 <MainLayout title={title} description={description}>

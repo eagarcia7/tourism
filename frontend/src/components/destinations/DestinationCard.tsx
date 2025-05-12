@@ -1,55 +1,63 @@
 import React from 'react';
 import type { Destination } from '../../types/api';
+import ImageWithFallback from '../common/ImageWithFallback';
+import GradientOverlay from '../common/GradientOverlay';
+import ArrowLink from '../common/ArrowLink';
 
-interface Props {
+interface DestinationCardProps {
+  /** Destination data to display */
   destination: Destination;
+  /** Optional additional CSS classes */
+  className?: string;
 }
 
-const DestinationCard: React.FC<Props> = ({ destination }) => {
-  const { name, slug, shortDescription, image, imageUrl } = destination.attributes;
-  
+/**
+ * Card component for displaying destination previews
+ */
+const DestinationCard: React.FC<DestinationCardProps> = ({ 
+  destination,
+  className = ''
+}) => {
   return (
     <a 
-      href={`/islands/${slug}`} 
-      className="group block relative aspect-[4/3] overflow-hidden rounded-lg"
+      href={`/islands/${destination.slug}`} 
+      className={`group block relative aspect-[4/3] overflow-hidden rounded-lg ${className}`}
     >
-      {/* Background Image */}
+      {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0">
-        <img
-          src={imageUrl}
-          alt={image?.data?.attributes.alternativeText || name}
+        <ImageWithFallback
+          imageData={
+            destination.image?.data
+              ? {
+                  ...destination.image.data,
+                  attributes: {
+                    ...destination.image.data.attributes,
+                    alternativeText: destination.image.data.attributes.alternativeText ?? undefined,
+                  },
+                }
+              : undefined
+          }
+          fallbackUrl={destination.imageUrl}
+          altText={destination.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+        <GradientOverlay 
+          direction="to-t" 
+          className="group-hover:opacity-90" 
+        />
       </div>
       
       {/* Content */}
       <div className="relative h-full flex flex-col justify-end p-6 text-white">
         <h3 className="text-2xl font-bold mb-2 text-white">
-          {name}
+          {destination.name}
         </h3>
-        {shortDescription && (
+        {destination.shortDescription && (
           <p className="text-sm text-white/90 mb-4 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-            {shortDescription}
+            {destination.shortDescription}
           </p>
         )}
-        <div className="flex items-center text-sm font-medium">
-          <span>Explore</span>
-          <svg 
-            className="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M9 5l7 7-7 7" 
-            />
-          </svg>
-        </div>
+        <ArrowLink label="Explore" />
       </div>
     </a>
   );

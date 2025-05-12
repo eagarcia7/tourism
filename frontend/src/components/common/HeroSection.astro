@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  imageUrl?: string;
+}
+
+const { title, description, imageUrl } = Astro.props;
+---
+
+<div class="relative overflow-hidden rounded-xl mb-8 h-96">
+  {imageUrl && (
+    <img 
+      src={imageUrl} 
+      alt={title} 
+      class="w-full h-full object-cover absolute inset-0"
+    />
+  )}    
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70"></div>
+  <div class="absolute bottom-0 left-0 p-8 text-white">
+    <h1 class="text-4xl font-bold mb-2 text-white">{title}</h1>
+    {description && (
+      <p class="text-xl max-w-2xl">{description}</p>
+    )}
+  </div>
+</div>

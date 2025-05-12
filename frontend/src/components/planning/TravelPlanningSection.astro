@@ -1,0 +1,36 @@
+---
+import InfoCard from './InfoCard.astro';
+
+interface Props {
+  destinationName: string;
+}
+
+const { destinationName } = Astro.props;
+---
+
+<section class="mt-16 bg-blue-50 rounded-lg p-8">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">Plan Your {destinationName} Vacation</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    <InfoCard
+      title="Best Time to Visit"
+      content={`${destinationName} is beautiful year-round, but the best weather is typically from April to October. The winter months may see more rainfall but offer better waves for surfing.`}
+      iconName="calendar"
+    />
+    
+    <InfoCard
+      title="Where to Stay"
+      content={`From luxury resorts to boutique hotels and vacation rentals, ${destinationName} offers accommodations for every budget and preference.`}
+      iconName="home"
+    />
+    
+    <InfoCard
+      title="Contact a Specialist"
+      content={`Need help planning your perfect ${destinationName} vacation? Our island specialists are here to assist you.`}
+      iconName="mail"
+      link={{
+        text: "Get in touch →",
+        href: "/contact"
+      }}
+    />
+  </div>
+</section>

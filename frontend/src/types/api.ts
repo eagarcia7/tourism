@@ -37,21 +37,19 @@ export interface ApiError {
  * Destination data structure from CMS
  */
 export interface Destination {
-  id: number;
-  attributes: ContentAttributes & {
-    name: string;
-    slug: string;
-    description: string;
-    shortDescription?: string;
-    image: MediaItem;
-    gallery?: {
-      data: Array<MediaItem['data']>;
-    };
-    activities: string[];
-    weatherInfo?: string;
-    travelTips?: string;
-    imageUrl?: string;
+  documentId: string;
+  name: string;
+  slug: string;
+  description: string;
+  shortDescription?: string;
+  image: MediaItem;
+  gallery?: {
+    data: Array<MediaItem['data']>;
   };
+  activities: string[];
+  weatherInfo?: string;
+  travelTips?: string;
+  imageUrl?: string;
 }
 
 /**

@@ -1,7 +1,10 @@
 ---
-import DestinationDetail from '../components/destinations/DestinationDetail';
 import type { Destination } from '../types';
-import ActivityGrid from '../components/activities/ActivityGrid';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import HeroSection from '../components/common/HeroSection.astro';
+import DestinationDetail from '../components/destinations/DestinationDetail';
+import ActivitySection from '../components/activities/ActivitySection.astro';
+import TravelPlanningSection from '../components/planning/TravelPlanningSection.astro';
 
 interface Props {
   island: Destination;
@@ -11,89 +14,31 @@ const { island } = Astro.props;
 ---
 
 <div class="max-w-6xl mx-auto px-4 py-8">
-  <!-- Hero section -->
-  <div class="relative overflow-hidden rounded-xl mb-12 h-96">
-    {island.attributes.image?.data && (
-      <img 
-        src={island.attributes.image.data.attributes.url} 
-        alt={island.attributes.image.data.attributes.alternativeText || island.attributes.name} 
-        class="w-full h-full object-cover absolute inset-0"
-      />
-    )}
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-70"></div>
-    <div class="absolute bottom-0 left-0 p-8 text-white">
-      <h1 class="text-4xl font-bold mb-2 text-white">{island.attributes.name}</h1>
-      {island.attributes.shortDescription && (
-        <p class="text-xl max-w-2xl">{island.attributes.shortDescription}</p>
-      )}
-    </div>
-  </div>
-
   <!-- Breadcrumbs -->
-  <div class="mb-8">
-    <nav class="flex text-gray-500 text-sm">
-      <a href="/" class="hover:text-blue-600">Home</a>
-      <span class="mx-2">/</span>
-      <a href="/islands" class="hover:text-blue-600">Islands</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-800 font-medium">{island.attributes.name}</span>
-    </nav>
-  </div>
+  <Breadcrumbs
+    items={[
+      { label: 'Home', href: '/' },
+      { label: 'Islands', href: '/islands' },
+      { label: island.name, href: '', current: true }
+    ]}
+  />
+    
+  <!-- Hero section -->
+  <HeroSection 
+    title={island.name}
+    description={island.shortDescription}
+    imageUrl={island.imageUrl}
+  />
 
   <!-- Island details component (React) -->
-  <DestinationDetail destination={island} onBack={() => null} client:load />
+  <DestinationDetail destination={island} onBack={() => null} client:only="react" />
 
   <!-- Activities section -->
-  <section class="mt-16">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Popular Activities in {island.attributes.name}</h2>
-    <p class="text-gray-600 mb-8 max-w-3xl">
-      From adventure sports to cultural experiences, {island.attributes.name} offers a wide range of activities for every traveler.
-      Explore our recommendations below to plan your perfect island itinerary.
-    </p>
-    
-    <!-- Activities Grid (React component) -->
-    <ActivityGrid destinationId={island.id} client:visible />
-  </section>
+  <ActivitySection 
+    destinationName={island.name}
+    destinationId={island.documentId}
+  />
   
   <!-- Travel Planning section -->
-  <section class="mt-16 bg-blue-50 rounded-lg p-8">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">Plan Your {island.attributes.name} Vacation</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-      <div class="bg-white p-6 rounded-lg shadow-sm">
-        <div class="text-blue-600 mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <h3 class="font-bold text-lg text-gray-800 mb-2">Best Time to Visit</h3>
-        <p class="text-gray-600">
-          {island.attributes.name} is beautiful year-round, but the best weather is typically from April to October.
-          The winter months may see more rainfall but offer better waves for surfing.
-        </p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-sm">
-        <div class="text-blue-600 mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-        </div>
-        <h3 class="font-bold text-lg text-gray-800 mb-2">Where to Stay</h3>
-        <p class="text-gray-600">
-          From luxury resorts to boutique hotels and vacation rentals, {island.attributes.name} offers accommodations for every budget and preference.
-        </p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-sm">
-        <div class="text-blue-600 mb-3">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </div>
-        <h3 class="font-bold text-lg text-gray-800 mb-2">Contact a Specialist</h3>
-        <p class="text-gray-600">
-          Need help planning your perfect {island.attributes.name} vacation? Our island specialists are here to assist you.
-        </p>
-        <a href="/contact" class="inline-block mt-3 text-blue-600 hover:text-blue-800 font-medium">Get in touch →</a>
-      </div>
-    </div>
-  </section>
+  <TravelPlanningSection destinationName={island.name} />
 </div>
